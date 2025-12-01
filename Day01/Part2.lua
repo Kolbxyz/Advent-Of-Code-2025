@@ -12,20 +12,8 @@ for line in file:lines() do
     local step = string.sub(line, 2, #line)
 
     for _ = 1, step do
-        if (ptr + direction == 100 or ptr + direction == 0) then
-            print(line)
-        end
-        if ptr + direction == 100 then
-            ptr = 0
-            code = code + 1
-        elseif ptr + direction == 0 then
-            ptr = ptr + direction
-            code = code + 1
-        elseif ptr + direction < 0 then
-            ptr = 99
-        else
-            ptr = ptr + direction
-        end
+        code = code + (ptr + direction == 0 and 1 or ptr + direction == 100 and 1 or 0)
+        ptr = ptr + direction == 100 and 0 or ptr + direction == 0 and ptr + direction or ptr + direction < 0 and 99 or ptr + direction
     end
 end
 
