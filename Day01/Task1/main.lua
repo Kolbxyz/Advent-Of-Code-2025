@@ -1,10 +1,16 @@
 -- main.lua
 local io = require("io")
-local file = io.open("input", "r")
+local file = io.open("./Day01/Task1/input", "r")
 
 -- vars
 local ptr = 50
 local code = 0
+
+-- error handling
+if not file then
+    print("Invalid input file!")
+    os.exit(84)
+end
 
 -- func
 for line in file:lines() do
