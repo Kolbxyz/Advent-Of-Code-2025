@@ -1,10 +1,10 @@
 #!/bin/bash
 if [ $# == 2 ]; then
-    if [ -f "./Day$1/Task$2/main.lua" ]; then
-        lua ./Day$1/Task$2/main.lua
+    if [ -f "./2025/Day$1/Task$2/main.lua" ]; then
+        lua ./2025/Day$1/Task$2/main.lua
     else
-        if [ -d "./Day$1" ]; then
-            if [ -d "./Day$1/Task$2/" ]; then
+        if [ -d "./2025/Day$1" ]; then
+            if [ -d "./2025/Day$1/Task$2/" ]; then
                 echo "Nothing to execute."
             else
                 echo "Couldn't find task $2."

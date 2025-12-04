@@ -1,6 +1,6 @@
 -- main.lua
 local io = require("io")
-local file = io.open("./Day02/Task1/input", "r")
+local file = io.open("./2025/Day02/Task1/input", "r")
 local score = 0
 
 -- libs
