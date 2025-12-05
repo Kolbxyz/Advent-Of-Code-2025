@@ -1,6 +1,6 @@
 -- main.lua
 local io = require("io")
-local file = io.open("./2025/Day04/Task1/input", "r")
+local file = io.open("./2025/Day04/Task2/input", "r")
 
 -- vars
 local map = {}
