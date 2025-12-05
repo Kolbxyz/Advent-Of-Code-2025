@@ -14,10 +14,35 @@ if not file then
 end
 
 -- func
-for _, v in ipairs(split(file:read("*all"), "-")) do
-    table.insert(map, v)
+local ranges = {}
+local ids = {}
+local isIds = false
+
+for line in file:lines() do
+    if #line < 2 then
+        isIds = true
+        goto continue
+    end
+    if isIds then
+        table.insert(ids, line)
+    else
+        table.insert(ranges, line)
+    end
+    ::continue::
 end
 
-print(res)
+local count = 0
+for _, id in pairs(ids) do
+    for _, range in pairs(ranges) do
+        local min, max = string.match(range, "(%d+)%-(%d+)")
+        min, max = tonumber(min), tonumber(max)
+        if tonumber(id) >= min and tonumber(id) <= max then
+            count = count + 1
+            break
+        end
+    end
+end
+
+print(count)
 
 io.close(file)
