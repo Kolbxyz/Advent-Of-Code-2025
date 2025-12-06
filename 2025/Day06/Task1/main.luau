@@ -1,5 +1,5 @@
 --!strict
--- main.lua
+-- main.luau
 -- vars
 local file : string = require("./input")
 
@@ -39,3 +39,4 @@ end
 
 local parsedFile = parse(file)
 print(findResult(parsedFile))
+
