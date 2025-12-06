@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+import subprocess
+import sys
+
+SCRIPT_PATH = "script.luau"
+
+with open(SCRIPT_PATH) as f:
+    content = f.read()
+args = ', '.join(f'"{arg}"' for arg in sys.argv[2:])
+
+# Inject wrapper
+script = f'''
+_out, _code = {{}}, 0
+_print = print
+function print(...) 
+    t = {{...}}
+    for i = 1, select("#", ...) do t[i] = tostring(select(i, ...)) end
+    table.insert(_out, table.concat(t, "\\t"))
+end
+function set_error_code(c) _code = c end
+function exit(c) 
+    _code = c or 0
+    error("__EXIT__", 0)
+end
+
+{content}
+
+local ok, err = pcall(main, {args})
+if not ok and err ~= "__EXIT__" then
+    _print("Error: " .. tostring(err))
+    _code = 1
+end
+
+_print("__C:" .. _code)
+for _, l in ipairs(_out) do _print("__O:" .. l) end
+'''
+
+# Run
+with open('temp.luau', 'w') as f:
+    f.write(script)
+result = subprocess.run(['luau', 'temp.luau'], capture_output=True, text=True)
+
+# Parse
+code, lines = 0, []
+for line in (result.stdout + result.stderr).split('\n'):
+    if line[:4] == '__C:': code = int(line[4:])
+    elif line[:4] == '__O:': lines.append(line[4:])
+
+# Output
+out = '\n'.join(lines)
+if out:
+    (sys.stderr if code else sys.stdout).write(out + '\n')
+sys.exit(code)

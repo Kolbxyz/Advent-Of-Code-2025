@@ -3,9 +3,12 @@
 -- vars
 local file : string = require("./input")
 
+-- types
+type arr = { { string } }
+
 -- func
-local function parse(file : string?) : { { string } }
-    local parsedFile : { { string } } = {}
+local function parse(file : string?) : arr
+    local parsedFile : arr = {}
 
     assert(file, "Invalid file provided")
     for _, line : string in ipairs(string.split(file, "\n")) do
@@ -18,7 +21,7 @@ local function parse(file : string?) : { { string } }
     return parsedFile
 end
 
-local function findResult(parsedFile : { { string } }) : number
+local function findResult(parsedFile : arr) : number
     local res : number = 0
 
     for x = 1, #parsedFile[1] do

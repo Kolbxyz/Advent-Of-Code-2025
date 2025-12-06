@@ -2,31 +2,34 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <string>
 
 int main()
 {
+    using namespace std;
+    int res = 0;
     int ptr = 50;
-    std::string path = "2025/Day01/Task1/input";
-    std::ifstream file(path);
-    std::string str;
+    string path = "./2025/Day01/Task1/input";
+    ifstream file(path);
+    string str;
+    if (!file.is_open()) {
+        cerr << "Error: Could not open file " << path << endl;
+        return 1;
+    }
 
-    while (std::getline(file, str)) {
-        int direction = str.substr(0, 1) == "R" ? 1 : 0;
-        int max_step = std::stoi(str.substr(1, str.length()));
+    while (getline(file, str)) {
+        int direction = str[0] == 'R' ? 1 : -1;
+        int max_step = stoi(str.substr(1));
 
         for (int i = 0; i < max_step; ++i) {
-            //std::cout << i << std::endl;
-            ptr++;
+            ptr += direction;
+            if (ptr < 0 || ptr > 99)
+                ptr = ptr < 0 ? 99 : 0;
         }
+        if (ptr == 0)
+            ++res;
     }
     
-    /*
-    std::vector<int> l = {1};
-
-    l.push_back(3);
-    l.push_back(6);
-    for (int i : l)
-        std::cout << i << std::endl;
-    //std::cout << "Hello world!\n";*/
+    cout << res << endl;
     return 0;
 }
