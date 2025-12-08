@@ -24,7 +24,8 @@ local function computeDistances(parsedFile: ParsedType)
     for i = 1, #parsedFile do
         for j = 2 + i, #parsedFile do
             local i_cell, j_cell = parsedFile[i], parsedFile[j]
-            local distance = math.sqrt(math.pow(i_cell.x - j_cell.x, 2)
+            local distance = math.sqrt(
+                math.pow(i_cell.x - j_cell.x, 2)
                 + math.pow(i_cell.y - j_cell.y, 2)
                 + math.pow(i_cell.z - j_cell.z, 2))
             table.insert(distances, {distance = distance, i = i, j = j})
@@ -66,7 +67,7 @@ local function findResult(DATA: ParsedType) : number
 
                 if groupI == -1 and groupJ == -1 then -- none have a group
                     table.insert(groups, {data.i, data.j})
-                elseif groupI == -1 and groupJ ~= -1 then -- i has not gorup but j has one
+                elseif groupI == -1 and groupJ ~= -1 then -- i has a group but j hasn't
                     table.insert(groups[groupJ], data.i)
                 elseif groupI ~= -1 and groupJ == -1 then -- j has a group but i hasn't
                     table.insert(groups[groupI], data.j)
