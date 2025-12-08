@@ -1,6 +1,6 @@
 -- main.lua
 local io = require("io")
-local file = io.open("./2025/Day01/Task1/input", "r")
+local file = io.open("./2025/Day01/input", "r")
 
 -- vars
 local ptr = 50
