@@ -66,7 +66,7 @@ local function findResult(DATA: ParsedType) : number
 
                 if groupI == -1 and groupJ == -1 then -- none have a group
                     table.insert(groups, {data.i, data.j})
-                elseif groupI == -1 and groupJ ~= -1 then -- i has not gorup but j has one
+                elseif groupI == -1 and groupJ ~= -1 then -- i has not group but j has one
                     table.insert(groups[groupJ], data.i)
                 elseif groupI ~= -1 and groupJ == -1 then -- j has a group but i hasn't
                     table.insert(groups[groupI], data.j)

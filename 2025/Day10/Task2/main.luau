@@ -1,0 +1,2 @@
+-- I haven't done task 2 for this day.
+-- Too hard 4 me.
