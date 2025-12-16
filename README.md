@@ -8,5 +8,6 @@ Day 6: ⭐⭐
 Day 7: ⭐⭐  
 Day 8: ⭐⭐  
 Day 9: ⭐⭐  
-Day 10: ☆ (no golden star for Day 10 D:)  
+Day 10: ⭐⭐
 Day 11: ⭐⭐  
+Day 12: ⭐⭐  
